@@ -43,33 +43,33 @@ services:
       # - "8600:53/tcp"
     restart: unless-stopped
 
-  term-service:
+  topic-service:
     build:
       context: ..
       dockerfile: Dockerfile
-    container_name: term-service
+    container_name: topic-service
     ports:
-      - "8009:8009"
+      - "8011:8011"
     depends_on:
-      - term_db
+      - topic_db
       - consul
     volumes:
       - ../configs/config.prod.yaml:/configs/config.yaml
     networks:
       - microservices
 
-  term_db:
+  topic_db:
     image: mongo:6.0
-    container_name: term_db
+    container_name: topic_db
     ports:
       - "27017:27017"
     volumes:
-      - termdb_data:/data/db
+      - topicdb_data:/data/db
     networks:
       - microservices
 
 volumes:
-  termdb_data:
+  topicdb_data:
 
 networks:
   microservices:

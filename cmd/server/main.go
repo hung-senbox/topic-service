@@ -6,12 +6,12 @@ import (
 
 	// "os"
 
-	"term-service/pkg/config"
-	"term-service/pkg/consul"
-	"term-service/pkg/db"
-	"term-service/pkg/router"
+	"topic-service/pkg/config"
+	"topic-service/pkg/consul"
+	"topic-service/pkg/db"
+	"topic-service/pkg/router"
 
-	"term-service/pkg/zap"
+	"topic-service/pkg/zap"
 )
 
 func main() {
@@ -40,7 +40,7 @@ func main() {
 	//db
 	db.ConnectMongoDB()
 
-	r := router.SetupRouter(db.TermCollection)
+	r := router.SetupRouter(db.TopicCollection)
 	port := cfg.Server.Port
 	if err := r.Run(":" + port); err != nil {
 		log.Fatal("Failed to run server:", err)

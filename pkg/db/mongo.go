@@ -4,15 +4,15 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"term-service/pkg/config"
 	"time"
+	"topic-service/pkg/config"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var MongoClient *mongo.Client
-var TermCollection *mongo.Collection
+var TopicCollection *mongo.Collection
 
 func ConnectMongoDB() {
 	d := config.AppConfig.Database.Mongo
@@ -39,6 +39,6 @@ func ConnectMongoDB() {
 		log.Fatalf("MongoDB ping failed: %v", err)
 	}
 
-	TermCollection = MongoClient.Database(d.Name).Collection("terms")
-	log.Println("Connected to MongoDB and loaded 'terms' collection")
+	TopicCollection = MongoClient.Database(d.Name).Collection("topics")
+	log.Println("Connected to MongoDB and loaded 'topics' collection")
 }

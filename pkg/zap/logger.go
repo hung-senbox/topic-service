@@ -2,9 +2,9 @@ package zap
 
 import (
 	"os"
-	"term-service/pkg/config"
-	"term-service/pkg/constants"
 	"time"
+	"topic-service/pkg/config"
+	"topic-service/pkg/constants"
 
 	"github.com/EventStore/EventStore-Client-Go/esdb"
 	"github.com/spf13/viper"

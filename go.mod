@@ -1,4 +1,4 @@
-module term-service
+module topic-service
 
 go 1.24.4
 

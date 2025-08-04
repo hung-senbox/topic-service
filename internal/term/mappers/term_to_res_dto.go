@@ -1,10 +1,10 @@
 package mappers
 
 import (
-	"term-service/internal/term/dto/response"
-	"term-service/internal/term/model"
-	"term-service/pkg/helper"
 	"time"
+	"topic-service/internal/term/dto/response"
+	"topic-service/internal/term/model"
+	"topic-service/pkg/helper"
 )
 
 func MapTermToResDTO(term *model.Term) response.TermResDTO {

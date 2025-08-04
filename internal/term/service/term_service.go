@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"term-service/internal/term/model"
-	"term-service/internal/term/repository"
+	"topic-service/internal/term/model"
+	"topic-service/internal/term/repository"
 )
 
 type TermService interface {

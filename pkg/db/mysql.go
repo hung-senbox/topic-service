@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 	"log"
-	"term-service/internal/term/model"
-	"term-service/pkg/config"
+	"topic-service/internal/term/model"
+	"topic-service/pkg/config"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
