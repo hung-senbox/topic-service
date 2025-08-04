@@ -12,7 +12,7 @@ database:
     name: "topic_service"
 
   mongodb:
-    host: "topic_db"
+    host: "localhost"
     port: "27017"
     # user: "Senbox"
     # password: ""
