@@ -28,7 +28,7 @@ func SetupRouter(topicCol *mongo.Collection) *gin.Engine {
 
 	v1 := r.Group("/api/v1")
 	{
-		topicGroup := v1.Group("/topics", middleware.Secured())
+		topicGroup := v1.Group("/topic", middleware.Secured())
 		{
 			topicGroup.POST("", topicHandler.CreateTopic)
 			topicGroup.GET("/:id", topicHandler.GetTopicByID)

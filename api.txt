@@ -1,6 +1,6 @@
 Terms
-GET     /api/v1/topics
-GET     /api/v1/topics/:id
-POST    /api/v1/topics
-PUT     /api/v1/topics/:id
+GET     /api/v1/topic
+GET     /api/v1/topic/:id
+POST    /api/v1/topic
+PUT     /api/v1/topic/:id
 
