@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"sync"
 	"time"
+
 	"github.com/hashicorp/consul/api"
 )
 

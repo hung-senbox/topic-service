@@ -30,7 +30,7 @@ func (h *TopicHandler) CreateTopic(c *gin.Context) {
 		return
 	}
 
-	result, err := h.service.CreateTopic(c.Request.Context(), &topic)
+	result, err := h.service.CreateTopic(c, &topic)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, response.FailedResponse{
 			Code:    http.StatusInternalServerError,
