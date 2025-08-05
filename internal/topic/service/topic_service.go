@@ -2,8 +2,6 @@ package service
 
 import (
 	"context"
-	"errors"
-	"fmt"
 	"topic-service/internal/gateway"
 	"topic-service/internal/topic/dto/response"
 	"topic-service/internal/topic/mapper"
@@ -35,25 +33,25 @@ func NewTopicService(repo repository.TopicRepository, userGateway gateway.UserGa
 
 func (s *topicService) CreateTopic(ctx *gin.Context, topic *model.Topic) (*response.TopicResponse, error) {
 
-	userIDRaw, exists := ctx.Get("user_id")
-	if !exists {
-		return nil, errors.New("user ID not found in context")
-	}
+	// userIDRaw, exists := ctx.Get("user_id")
+	// if !exists {
+	// 	return nil, errors.New("user ID not found in context")
+	// }
 
-	userID, ok := userIDRaw.(string)
-	if !ok || userID == "" {
-		return nil, errors.New("user ID is not a valid string")
-	}
+	// userID, ok := userIDRaw.(string)
+	// if !ok || userID == "" {
+	// 	return nil, errors.New("user ID is not a valid string")
+	// }
 
-	// Gọi gateway để kiểm tra user
-	user, err := s.userGateway.GetAuthorInfo(ctx, userID)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get author info: %w", err)
-	}
+	// // Gọi gateway để kiểm tra user
+	// user, err := s.userGateway.GetAuthorInfo(ctx, userID)
+	// if err != nil {
+	// 	return nil, fmt.Errorf("failed to get author info: %w", err)
+	// }
 
-	if user == nil {
-		return nil, errors.New("user not found")
-	}
+	// if user == nil {
+	// 	return nil, errors.New("user not found")
+	// }
 
 	createdTopic, err := s.repo.Create(ctx, topic)
 	if err != nil {
