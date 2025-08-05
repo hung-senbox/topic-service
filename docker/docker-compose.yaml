@@ -49,7 +49,7 @@ services:
       dockerfile: Dockerfile
     container_name: topic-service
     ports:
-      - "8011:8011"
+      - "8012:8012"
     depends_on:
       - topic_db
       - consul
