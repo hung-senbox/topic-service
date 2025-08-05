@@ -2,6 +2,7 @@ package router
 
 import (
 	"topic-service/internal/topic/handler"
+	"topic-service/internal/topic/middleware"
 	"topic-service/internal/topic/repository"
 	"topic-service/internal/topic/service"
 
@@ -18,7 +19,7 @@ func SetupRouter(topicCol *mongo.Collection) *gin.Engine {
 
 	v1 := r.Group("/api/v1")
 	{
-		topicGroup := v1.Group("/topics")
+		topicGroup := v1.Group("/topics", middleware.Secured())
 		{
 			topicGroup.POST("", topicHandler.CreateTopic)
 			topicGroup.GET("/:id", topicHandler.GetTopicByID)

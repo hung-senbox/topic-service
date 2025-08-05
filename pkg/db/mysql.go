@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 	"log"
-	"topic-service/internal/term/model"
+	"topic-service/internal/topic/model"
 	"topic-service/pkg/config"
 
 	"gorm.io/driver/mysql"
@@ -23,7 +23,7 @@ func ConnectMySQL() {
 		log.Fatalf("Failed to connect to MySQL: %v", err)
 	}
 
-	err = MySqlDB.AutoMigrate(&model.Term{})
+	err = MySqlDB.AutoMigrate(&model.Topic{})
 	if err != nil {
 		log.Fatalf("AutoMigrate failed: %v", err)
 	}
