@@ -2,17 +2,20 @@ package service
 
 import (
 	"context"
+	"time"
 	"topic-service/internal/gateway"
+	"topic-service/internal/topic/dto/request"
 	"topic-service/internal/topic/dto/response"
 	"topic-service/internal/topic/mapper"
 	"topic-service/internal/topic/model"
 	"topic-service/internal/topic/repository"
 
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type TopicService interface {
-	CreateTopic(ctx *gin.Context, topic *model.Topic) (*response.TopicResponse, error)
+	CreateTopic(ctx *gin.Context, req *request.CreateTopicRequest) (*response.TopicResponse, error)
 	GetTopicByID(ctx context.Context, id string) (*response.TopicResponse, error)
 	UpdateTopic(ctx context.Context, id string, topic *model.Topic) error
 	DeleteTopic(ctx context.Context, id string) error
@@ -31,7 +34,7 @@ func NewTopicService(repo repository.TopicRepository, userGateway gateway.UserGa
 	}
 }
 
-func (s *topicService) CreateTopic(ctx *gin.Context, topic *model.Topic) (*response.TopicResponse, error) {
+func (s *topicService) CreateTopic(ctx *gin.Context, req *request.CreateTopicRequest) (*response.TopicResponse, error) {
 
 	// userIDRaw, exists := ctx.Get("user_id")
 	// if !exists {
@@ -53,10 +56,19 @@ func (s *topicService) CreateTopic(ctx *gin.Context, topic *model.Topic) (*respo
 	// 	return nil, errors.New("user not found")
 	// }
 
-	createdTopic, err := s.repo.Create(ctx, topic)
+	newTopic := &model.Topic{
+		ID:        primitive.NewObjectID(),
+		Title:     req.Title,
+		Icon:      req.Icon,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	createdTopic, err := s.repo.Create(ctx, newTopic)
 	if err != nil {
 		return nil, err
 	}
+
 	return mapper.MapTopicToResponse(createdTopic), nil
 }
 

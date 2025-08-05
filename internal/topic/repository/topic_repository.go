@@ -28,10 +28,6 @@ func NewTopicRepository(collection *mongo.Collection) TopicRepository {
 }
 
 func (r *topicRepository) Create(ctx context.Context, topic *model.Topic) (*model.Topic, error) {
-	topic.ID = primitive.NewObjectID()
-	now := time.Now()
-	topic.CreatedAt = now
-	topic.UpdatedAt = now
 
 	_, err := r.collection.InsertOne(ctx, topic)
 	if err != nil {

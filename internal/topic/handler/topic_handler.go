@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 
+	"topic-service/internal/topic/dto/request"
 	"topic-service/internal/topic/dto/response"
 	"topic-service/internal/topic/model"
 	"topic-service/internal/topic/service"
@@ -20,8 +21,8 @@ func NewTopicHandler(service service.TopicService) *TopicHandler {
 
 // POST /topics
 func (h *TopicHandler) CreateTopic(c *gin.Context) {
-	var topic model.Topic
-	if err := c.ShouldBindJSON(&topic); err != nil {
+	var req request.CreateTopicRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, response.FailedResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Invalid request body",
@@ -30,7 +31,7 @@ func (h *TopicHandler) CreateTopic(c *gin.Context) {
 		return
 	}
 
-	result, err := h.service.CreateTopic(c, &topic)
+	result, err := h.service.CreateTopic(c, &req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, response.FailedResponse{
 			Code:    http.StatusInternalServerError,
